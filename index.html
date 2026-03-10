@@ -14,8 +14,8 @@
       will-change:transform;
     
       background:
-        linear-gradient(rgba(56,189,248,0.18) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(56,189,248,0.18) 1px, transparent 1px);
+        linear-gradient(rgba(6,188,245,0.18) 1px, transparent 1px),
+        linear-gradient(rgba(6,188,245,0.25) 1px, transparent 1px);
     
       background-size:60px 60px;
     
@@ -48,9 +48,13 @@
       --panel:#020617;
       --card:#1e293b;
       --card-2:#172554;
+    
       --text:#e2e8f0;
       --muted:#94a3b8;
-      --accent:#38bdf8;
+    
+      --accent:#06bcf5;
+      --accent-2:#79da45;
+    
       --border:#334155;
       --hover:#0b1220;
     }
@@ -135,10 +139,9 @@
     }
     
     ::-webkit-scrollbar-thumb{
-      background:#38bdf8;
+      background:linear-gradient(#06bcf5,#79da45);
       border-radius:6px;
     }
-
     #search{
       width:100%;
       padding:11px 12px;
@@ -182,7 +185,7 @@
     }
 
     .sidebar a.active{
-      background:rgba(56,189,248,.12);
+      background:rgba(6,188,245,.15);
       color:var(--accent);
     }
 
@@ -209,7 +212,10 @@
     .hero h1{
       margin:0 0 10px;
       font-size:38px;
-      color:#fff;
+    
+      background:linear-gradient(90deg,#06bcf5,#79da45);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
     }
 
     .hero p{
@@ -238,7 +244,7 @@
     .rule h3{
       margin:18px 0 10px;
       font-size:18px;
-      color:var(--accent);
+      color:var(--accent-2);
     }
 
     .rule p{
