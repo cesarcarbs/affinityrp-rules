@@ -1,42 +1,69 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+<meta charset="UTF-8">
 <title>AffinityRP Rulebook</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
 
 body{
-font-family: Arial, sans-serif;
+margin:0;
+font-family:Segoe UI,Arial;
 background:#0f172a;
 color:white;
-margin:0;
-line-height:1.6;
+display:flex;
 }
 
-header{
+/* SIDEBAR */
+
+.sidebar{
+width:260px;
 background:#020617;
-padding:30px;
-text-align:center;
-font-size:32px;
-font-weight:bold;
+height:100vh;
+overflow:auto;
+position:fixed;
+padding:20px;
 }
 
-.container{
-max-width:1000px;
-margin:auto;
-padding:40px 20px;
+.sidebar h2{
+margin-top:0;
+color:#38bdf8;
 }
 
-.section{
-margin-top:50px;
+.sidebar a{
+display:block;
+color:#cbd5f5;
+text-decoration:none;
+padding:8px 0;
+font-size:14px;
+}
+
+.sidebar a:hover{
+color:#38bdf8;
+}
+
+#search{
+width:100%;
+padding:8px;
+margin-bottom:15px;
+border-radius:6px;
+border:none;
+}
+
+/* CONTENT */
+
+.content{
+margin-left:260px;
+padding:40px;
+max-width:900px;
 }
 
 .rule{
 background:#1e293b;
-padding:25px;
-margin-bottom:20px;
+padding:20px;
 border-radius:10px;
+margin-bottom:20px;
 }
 
 .rule h2{
@@ -44,16 +71,12 @@ margin-top:0;
 color:#38bdf8;
 }
 
-.rule h3{
-color:#93c5fd;
+html{
+scroll-behavior:smooth;
 }
 
 ul{
 padding-left:20px;
-}
-
-li{
-margin-bottom:8px;
 }
 
 </style>
@@ -62,259 +85,195 @@ margin-bottom:8px;
 
 <body>
 
-<header>AffinityRP Rulebook</header>
 
-<div class="container">
+<div class="sidebar">
 
+<h2>AffinityRP</h2>
 
-<div class="rule">
-<h2>Community Key Values</h2>
+<input id="search" placeholder="Search rules...">
 
-<p>
-Too often, roleplay communities feel toxic or unwelcoming to newcomers.
-That is not who we are. We are building a place where characters grow,
-stories unfold, and players create moments worth remembering.
-</p>
-
-<p>
-This community focuses on semi-serious, story-driven roleplay.
-Staff may assess RP quality through community complaints and
-determine punishments case-by-case.
-</p>
-
-<ul>
-<li>Gunplay first roleplay is not allowed.</li>
-<li>You must be 18 years or older to play (exceptions by management).</li>
-<li>A working microphone is required.</li>
-<li>You must speak and write English.</li>
-<li>Character names must be realistic.</li>
-<li>No default characters without RP Manager approval.</li>
-<li>No toxicity anywhere (Discord, Twitch, Reddit, etc).</li>
-<li>Remain in character at all times.</li>
-<li>Do not radio while downed or cuffed.</li>
-<li>Rule reports must include video evidence.</li>
-<li>Hate speech, harassment, sexism, or discrimination is prohibited.</li>
-</ul>
+<a href="#rule1">Community Values</a>
+<a href="#rule2">18+ Requirement</a>
+<a href="#rule3">Microphone Requirement</a>
+<a href="#rule4">English Requirement</a>
+<a href="#rule5">Character Names</a>
+<a href="#rule6">Toxicity</a>
+<a href="#rule7">Stay In Character</a>
+<a href="#rule8">RDM / VDM</a>
+<a href="#rule9">New Life Rule</a>
+<a href="#rule10">Powergaming</a>
+<a href="#rule11">Metagaming</a>
+<a href="#rule12">Robbery Rules</a>
+<a href="#rule13">FearRP</a>
+<a href="#rule14">Server Restarts</a>
+<a href="#rule15">Driving Rules</a>
 
 </div>
 
 
-<div class="section">
-<h1>1.0 Communication & Conduct</h1>
-</div>
 
-<div class="rule">
-<h2>1.0 Communication</h2>
-<p>This is an English-speaking server.</p>
-<p>Voices cannot be used to identify someone wearing a face covering.</p>
-</div>
+<div class="content">
+
+<h1>AffinityRP Rulebook</h1>
 
 
-<div class="rule">
-<h2>1.1 Respect The Community</h2>
+<div class="rule" id="rule1">
+<h2>Community Values</h2>
 <p>
-Your actions should never remove enjoyment from another player.
-Sending angry OOC messages over in-game issues is not allowed.
-Handle issues through tickets.
+AffinityRP aims to create a welcoming and story-driven roleplay environment.
+Players should prioritize creativity, respect, and immersive storytelling.
 </p>
 </div>
 
 
-<div class="rule">
-<h2>1.2 Staff Rulings</h2>
+<div class="rule" id="rule2">
+<h2>18+ Requirement</h2>
 <p>
-All staff rulings are final. If you believe a ruling is incorrect,
-open a ticket with proof. Do not DM or tag staff members.
+Players must be 18 years or older to play on the server.
+Exceptions may only be granted by management.
 </p>
 </div>
 
 
-<div class="rule">
-<h2>1.3 Lying to Staff</h2>
+<div class="rule" id="rule3">
+<h2>Microphone Requirement</h2>
 <p>
-Lying to staff in tickets, chat, or any other communication
-will result in disciplinary action.
+All players must have a working, quality microphone.
 </p>
 </div>
 
 
-<div class="rule">
-<h2>1.5 Exploits & Cheats</h2>
-
-<ul>
-<li>No cheats, scripts, or modifications that give an advantage.</li>
-<li>Exploiting bugs for gain is prohibited.</li>
-<li>Bugs must be reported when discovered.</li>
-<li>AFK exploit farming will result in punishment.</li>
-</ul>
-
-</div>
-
-
-<div class="rule">
-<h2>1.7 Zero-Tolerance Policy</h2>
-
-<ul>
-<li>Rape or sexual assault RP is prohibited.</li>
-<li>Suicide RP is not allowed.</li>
-<li>Violations result in immediate bans.</li>
-</ul>
-
-</div>
-
-
-
-<div class="section">
-<h1>1.8 Combat Rules</h1>
-</div>
-
-
-<div class="rule">
-<h2>1.8 Deathmatching (RDM / VDM)</h2>
-
-<ul>
-<li>Killing without engaged roleplay is prohibited.</li>
-<li>Starting fights without RP buildup is not allowed.</li>
-<li>Vehicles cannot be used as weapons.</li>
-<li>PIT maneuvers are allowed.</li>
-<li>Accidents must be roleplayed with EMS or police.</li>
-</ul>
-
-</div>
-
-
-<div class="rule">
-<h2>1.9 Downed & New Life Rule</h2>
-
-<h3>Phase 1 (Knocked Down)</h3>
-<p>You may still speak but must roleplay injury.</p>
-
-<h3>Phase 2 (Unconscious)</h3>
-
-<ul>
-<li>No speaking or radio use.</li>
-<li>Only /me communication allowed.</li>
-<li>You forget events leading to unconsciousness.</li>
-<li>Memory loss may last up to 30 minutes.</li>
-</ul>
-
-</div>
-
-
-
-<div class="section">
-<h1>2.0 Roleplay Rules</h1>
-</div>
-
-
-<div class="rule">
-<h2>2.0 Powergaming & FailRP</h2>
-
-<ul>
-<li>Using mechanics to gain unfair advantage is prohibited.</li>
-<li>Teleport markers may only be used if accessible to others.</li>
-<li>Wait 10 minutes before storing a chase vehicle.</li>
-<li>Wait 10 minutes before changing clothes after crimes.</li>
-<li>You must provide federal ID when requested.</li>
-</ul>
-
-</div>
-
-
-<div class="rule">
-<h2>2.1 Metagaming</h2>
-
+<div class="rule" id="rule4">
+<h2>English Requirement</h2>
 <p>
-Using out-of-character information for roleplay advantage
-(stream sniping, Discord calls, etc.) is prohibited.
+Players must be able to speak and write English to participate.
 </p>
-
 </div>
 
 
-<div class="rule">
-<h2>2.4 Robbing & Kidnapping</h2>
+<div class="rule" id="rule5">
+<h2>Character Names</h2>
+<p>
+Character names must be realistic and sensible.
+You may not roleplay as a real-world celebrity or notable figure.
+</p>
+</div>
 
+
+<div class="rule" id="rule6">
+<h2>Toxicity</h2>
+<p>
+Toxic behavior on any platform related to the community
+(Discord, Twitch, Reddit, etc.) may result in removal from the server.
+</p>
+</div>
+
+
+<div class="rule" id="rule7">
+<h2>Stay In Character</h2>
+<p>
+Players must remain in character at all times while on the server.
+</p>
+</div>
+
+
+<div class="rule" id="rule8">
+<h2>RDM / VDM</h2>
+<ul>
+<li>Killing another player without engaged roleplay is prohibited.</li>
+<li>Vehicles may not be used as weapons.</li>
+</ul>
+</div>
+
+
+<div class="rule" id="rule9">
+<h2>New Life Rule</h2>
+<p>
+When your character becomes unconscious you forget events
+leading up to that moment until you are revived.
+</p>
+</div>
+
+
+<div class="rule" id="rule10">
+<h2>Powergaming</h2>
+<p>
+Using game mechanics or external information to gain an
+unfair roleplay advantage is not allowed.
+</p>
+</div>
+
+
+<div class="rule" id="rule11">
+<h2>Metagaming</h2>
+<p>
+Using information obtained outside the game (streams,
+Discord calls, etc.) to influence roleplay is prohibited.
+</p>
+</div>
+
+
+<div class="rule" id="rule12">
+<h2>Robbery Rules</h2>
 <ul>
 <li>You cannot rob communication devices.</li>
+<li>You cannot rob players who are AFK.</li>
 <li>You cannot force ATM withdrawals.</li>
-<li>You cannot rob AFK players.</li>
-<li>You cannot rob players inside menus.</li>
 </ul>
-
 </div>
 
 
-<div class="rule">
-<h2>2.9 FearRP</h2>
-
-<ul>
-<li>You must value your character's life.</li>
-<li>If outnumbered at gunpoint you must comply.</li>
-<li>You may flee in a vehicle but risk being shot.</li>
-</ul>
-
-</div>
-
-
-
-<div class="section">
-<h1>3.0 Server Policies</h1>
-</div>
-
-
-<div class="rule">
-<h2>3.0 Perma-Death</h2>
+<div class="rule" id="rule13">
+<h2>FearRP</h2>
 <p>
-Players cannot be forced into permanent death unless
-approved by gang rules or Department of Justice sentencing.
+Players must value their character’s life and respond
+realistically to threats or dangerous situations.
 </p>
 </div>
 
 
-<div class="rule">
-<h2>3.2 Server Restart Rules</h2>
-
+<div class="rule" id="rule14">
+<h2>Server Restart Rules</h2>
 <ul>
-<li>No crimes within 30 minutes before restart.</li>
+<li>No crimes 30 minutes before restart.</li>
 <li>Wait 30 minutes after restart before committing crimes.</li>
-<li>Scenes must resume after unexpected restart.</li>
 </ul>
-
 </div>
 
 
-<div class="rule">
-<h2>3.7 Gangs & Organizations</h2>
-
-<p>
-Gangs must provide quality roleplay. Low-quality RP
-may result in gang strikes or disbandment.
-All gangs must submit applications.
-</p>
-
-</div>
-
-
-
-<div class="section">
-<h1>4.0 Driving</h1>
-</div>
-
-
-<div class="rule">
+<div class="rule" id="rule15">
 <h2>Driving Rules</h2>
-
 <ul>
-<li>Vehicle stunts must fit the roleplay situation.</li>
-<li>Excessive unrealistic driving is prohibited.</li>
+<li>Vehicle stunts must fit the RP situation.</li>
+<li>Excessive unrealistic driving is not allowed.</li>
 <li>Major crashes must be roleplayed realistically.</li>
 </ul>
-
 </div>
 
 
 </div>
+
+
+<script>
+
+document.getElementById("search").addEventListener("keyup", function() {
+
+let input = this.value.toLowerCase()
+let rules = document.querySelectorAll(".rule")
+
+rules.forEach(rule => {
+
+if(rule.innerText.toLowerCase().includes(input))
+rule.style.display="block"
+else
+rule.style.display="none"
+
+})
+
+})
+
+</script>
+
 
 </body>
 </html>
