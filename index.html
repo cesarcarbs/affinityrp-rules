@@ -1,279 +1,621 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>AffinityRP Rulebook</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AffinityRP Rulebook</title>
+  <style>
+    :root{
+      --bg:#0f172a;
+      --panel:#020617;
+      --card:#1e293b;
+      --card-2:#172554;
+      --text:#e2e8f0;
+      --muted:#94a3b8;
+      --accent:#38bdf8;
+      --border:#334155;
+      --hover:#0b1220;
+    }
 
-<style>
+    *{
+      box-sizing:border-box;
+    }
 
-body{
-margin:0;
-font-family:Segoe UI,Arial;
-background:#0f172a;
-color:white;
-display:flex;
-}
+    html{
+      scroll-behavior:smooth;
+    }
 
-/* SIDEBAR */
+    body{
+      margin:0;
+      font-family:Inter,Segoe UI,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+    }
 
-.sidebar{
-width:260px;
-background:#020617;
-height:100vh;
-overflow:auto;
-position:fixed;
-padding:20px;
-}
+    .layout{
+      display:flex;
+      min-height:100vh;
+    }
 
-.sidebar h2{
-margin-top:0;
-color:#38bdf8;
-}
+    .sidebar{
+      width:320px;
+      background:var(--panel);
+      border-right:1px solid var(--border);
+      height:100vh;
+      position:fixed;
+      left:0;
+      top:0;
+      overflow-y:auto;
+      padding:20px 16px 28px;
+    }
 
-.sidebar a{
-display:block;
-color:#cbd5f5;
-text-decoration:none;
-padding:8px 0;
-font-size:14px;
-}
+    .brand{
+      margin-bottom:16px;
+      padding:8px 8px 14px;
+      border-bottom:1px solid var(--border);
+    }
 
-.sidebar a:hover{
-color:#38bdf8;
-}
+    .brand h1{
+      margin:0;
+      font-size:22px;
+      color:#fff;
+      letter-spacing:.2px;
+    }
 
-#search{
-width:100%;
-padding:8px;
-margin-bottom:15px;
-border-radius:6px;
-border:none;
-}
+    .brand p{
+      margin:6px 0 0;
+      font-size:13px;
+      color:var(--muted);
+    }
 
-/* CONTENT */
+    .search-wrap{
+      position:sticky;
+      top:0;
+      background:var(--panel);
+      padding-bottom:12px;
+      z-index:5;
+    }
 
-.content{
-margin-left:260px;
-padding:40px;
-max-width:900px;
-}
+    #search{
+      width:100%;
+      padding:11px 12px;
+      border:1px solid var(--border);
+      border-radius:10px;
+      background:#0b1120;
+      color:#fff;
+      outline:none;
+    }
 
-.rule{
-background:#1e293b;
-padding:20px;
-border-radius:10px;
-margin-bottom:20px;
-}
+    #search::placeholder{
+      color:#7c8aa0;
+    }
 
-.rule h2{
-margin-top:0;
-color:#38bdf8;
-}
+    .nav-group{
+      margin-top:14px;
+    }
 
-html{
-scroll-behavior:smooth;
-}
+    .nav-title{
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      color:var(--muted);
+      margin:14px 8px 8px;
+    }
 
-ul{
-padding-left:20px;
-}
+    .sidebar a{
+      display:block;
+      color:#cbd5e1;
+      text-decoration:none;
+      padding:9px 10px;
+      border-radius:10px;
+      font-size:14px;
+      line-height:1.35;
+      margin-bottom:4px;
+    }
 
-</style>
+    .sidebar a:hover{
+      background:var(--hover);
+      color:#fff;
+    }
+
+    .sidebar a.active{
+      background:rgba(56,189,248,.12);
+      color:var(--accent);
+    }
+
+    .content{
+      margin-left:320px;
+      width:calc(100% - 320px);
+      padding:40px 28px 64px;
+    }
+
+    .hero{
+      max-width:1100px;
+      margin:0 auto 28px;
+      padding:28px;
+      background:linear-gradient(180deg, rgba(23,37,84,.65), rgba(30,41,59,.95));
+      border:1px solid var(--border);
+      border-radius:20px;
+      box-shadow:0 20px 40px rgba(0,0,0,.18);
+    }
+
+    .hero h1{
+      margin:0 0 10px;
+      font-size:38px;
+      color:#fff;
+    }
+
+    .hero p{
+      margin:0;
+      color:#cbd5e1;
+      font-size:16px;
+    }
+
+    .rule{
+      max-width:1100px;
+      margin:0 auto 18px;
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:24px;
+      scroll-margin-top:22px;
+      box-shadow:0 10px 25px rgba(0,0,0,.12);
+    }
+
+    .rule.home{
+      background:linear-gradient(180deg, rgba(30,41,59,.95), rgba(23,37,84,.72));
+    }
+
+    .rule h2{
+      margin:0 0 14px;
+      font-size:28px;
+      color:#fff;
+    }
+
+    .rule h3{
+      margin:18px 0 10px;
+      font-size:18px;
+      color:var(--accent);
+    }
+
+    .rule p{
+      margin:0 0 14px;
+      line-height:1.7;
+      color:#e5edf8;
+      white-space:pre-line;
+    }
+
+    .rule strong{
+      color:#fff;
+    }
+
+    .rule ul{
+      margin:0 0 14px 20px;
+      padding:0;
+    }
+
+    .rule li{
+      margin:0 0 10px;
+      line-height:1.65;
+      color:#e5edf8;
+    }
+
+    .muted{
+      color:var(--muted);
+    }
+
+    .note{
+      padding:14px 16px;
+      border:1px solid var(--border);
+      background:rgba(2,6,23,.35);
+      border-radius:14px;
+      margin:14px 0;
+    }
+
+    .hidden{
+      display:none !important;
+    }
+
+    @media (max-width: 980px){
+      .sidebar{
+        position:static;
+        width:100%;
+        height:auto;
+        border-right:none;
+        border-bottom:1px solid var(--border);
+      }
+
+      .content{
+        margin-left:0;
+        width:100%;
+        padding:22px 14px 44px;
+      }
+
+      .layout{
+        flex-direction:column;
+      }
+
+      .hero h1{
+        font-size:30px;
+      }
+
+      .rule h2{
+        font-size:24px;
+      }
+    }
+  </style>
 </head>
-
-
 <body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>AffinityRP Rulebook</h1>
+        <p>Documentation style rules page</p>
+      </div>
 
+      <div class="search-wrap">
+        <input id="search" type="text" placeholder="Search rules..." />
+      </div>
 
-<div class="sidebar">
+      <div class="nav-group">
+        <div class="nav-title">Home</div>
+        <a href="#home">Community Key-Values</a>
+      </div>
 
-<h2>AffinityRP</h2>
+      <div class="nav-group">
+        <div class="nav-title">Section 1</div>
+        <a href="#rule-1-0">1.0 | Communication</a>
+        <a href="#rule-1-1">1.1 | Respect The Community</a>
+        <a href="#rule-1-2">1.2 | Staff Rulings and Conduct with Staff</a>
+        <a href="#rule-1-3">1.3 | Lying to Staff Members</a>
+        <a href="#rule-1-4">1.4 | Disputing a Ban</a>
+        <a href="#rule-1-5">1.5 | Exploits, Bugs, Cheats, GTA V Mechanics</a>
+        <a href="#rule-1-6">1.6 | Staff &amp; Server Leadership Roles</a>
+        <a href="#rule-1-7">1.7 | Zero-Tolerance Policy</a>
+        <a href="#rule-1-8">1.8 | Deathmatching (RDM &amp; VDM)</a>
+        <a href="#rule-1-9">1.9 | Downed &amp; New Life Rule (NLR)</a>
+      </div>
 
-<input id="search" placeholder="Search rules...">
+      <div class="nav-group">
+        <div class="nav-title">Section 2</div>
+        <a href="#rule-2-0">2.0 | Power-Gaming &amp; FailRP</a>
+        <a href="#rule-2-1">2.1 | Metagaming</a>
+        <a href="#rule-2-2">2.2 | Offensive RP/Combat Logging</a>
+        <a href="#rule-2-3">2.3 | Interactions between YOUR characters</a>
+        <a href="#rule-2-4">2.4 | Robbing &amp; Kidnapping</a>
+        <a href="#rule-2-5">2.5 | Going AFK</a>
+        <a href="#rule-2-6">2.6 | Robbery Rules &amp; Criminal Activity Limits</a>
+        <a href="#rule-2-7">2.7 | Interactions with Police, Medical Personnel</a>
+        <a href="#rule-2-8">2.8 | Police Mistreatment and Appeal</a>
+        <a href="#rule-2-9">2.9 | Fear RP / Value of Life</a>
+      </div>
 
-<a href="#rule1">Community Values</a>
-<a href="#rule2">18+ Requirement</a>
-<a href="#rule3">Microphone Requirement</a>
-<a href="#rule4">English Requirement</a>
-<a href="#rule5">Character Names</a>
-<a href="#rule6">Toxicity</a>
-<a href="#rule7">Stay In Character</a>
-<a href="#rule8">RDM / VDM</a>
-<a href="#rule9">New Life Rule</a>
-<a href="#rule10">Powergaming</a>
-<a href="#rule11">Metagaming</a>
-<a href="#rule12">Robbery Rules</a>
-<a href="#rule13">FearRP</a>
-<a href="#rule14">Server Restarts</a>
-<a href="#rule15">Driving Rules</a>
+      <div class="nav-group">
+        <div class="nav-title">Section 3</div>
+        <a href="#rule-3-0">3.0 | Perma-Death/Death Penalty</a>
+        <a href="#rule-3-1">3.1 | Vigilante/Hitman RP</a>
+        <a href="#rule-3-2">3.2 | Server Restarts &amp; Crime</a>
+        <a href="#rule-3-3">3.3 | IC Corruption</a>
+        <a href="#rule-3-4">3.4 | Multiple Whitelisted Jobs &amp; Certified Gangs/MC’s</a>
+        <a href="#rule-3-5">3.5 | Camping in Illicit Areas</a>
+        <a href="#rule-3-6">3.6 | Cars with no License Plate</a>
+        <a href="#rule-3-7">3.7 | Gangs and Organizations</a>
+        <a href="#rule-3-8">3.8 | Disciplinary Policy Notes</a>
+        <a href="#rule-3-9">3.9 | Revenge RP</a>
+      </div>
 
-</div>
+      <div class="nav-group">
+        <div class="nav-title">Section 4</div>
+        <a href="#rule-4-0">4.0 | Driving</a>
+      </div>
+    </aside>
 
+    <main class="content">
+      <section class="hero">
+        <h1>Affinityᴿᴾ Rulebook</h1>
+        <p>Clean, searchable, documentation-style rules for your community.</p>
+      </section>
 
+      <section class="rule home" id="home">
+        <h2>Community Key-Values</h2>
 
-<div class="content">
+        <p>Too often, roleplay communities can feel toxic or unwelcoming to newcomers. That is not who we are. We are building something different. A place where every new face is an opportunity, not an outsider. A place where characters grow, connections form, and moments turn into memories people talk about long after the scene ends.</p>
 
-<h1>AffinityRP Rulebook</h1>
+        <p>This community is meant to be more than just a server. It is a space where creativity thrives, where respect is the foundation, and where the weight of real life can fade for a while. Here, strangers meet, stories unfold, and those stories become worth telling.</p>
 
+        <p>We expect semi-serious, creative, and story-driven roleplay here. The quality of roleplay can be assessed by staff based on community complaints. Staff will determine punishments on a case-by-case basis. We DO NOT allow gunplay first here.</p>
 
-<div class="rule" id="rule1">
-<h2>Community Values</h2>
-<p>
-AffinityRP aims to create a welcoming and story-driven roleplay environment.
-Players should prioritize creativity, respect, and immersive storytelling.
-</p>
-</div>
+        <ul>
+          <li>You must be 18 years or older to play on the server. Exceptions may be made by a member of management or a director.</li>
+          <li>A working, quality mic is required.</li>
+          <li>You must be able to speak and write in English to play on this server.</li>
+          <li>Character names must be sensible and realistic. Sharing a name with a real-life or well-known person is allowed, as many people may have the same name in real life. However, intentionally roleplaying as or mimicking the identity, actions, or reputation of a famous or infamous person, whether from real life or the FiveM community, is not allowed.</li>
+          <li>When creating a character, you cannot run around as a Default Danny or Jane. You may not play as a default ped without getting approval from the RP Manager. Open a ticket.</li>
+          <li>Being toxic, or breeding toxicity in any platform, this includes Twitch, Reddit, Discord, etc, can have you removed from the community at any point in time.</li>
+          <li>When leaving the server “flying out,” DO NOT do it in front of others. Do it in private instead of breaking other players' immersion. Ideally, go back to your apartment and do it realistically.</li>
+          <li>Do not talk on the radio when completely downed or cuffed.</li>
+          <li>If you witness a rule break and wish to report it, you must submit a ticket with video evidence as proof. Using a video that isn’t yours IS allowed as long as you are a part of the scene.</li>
+          <li>Racial Slurs, Sexual Harassment, Derogatory Statements, Sexist comments, and Transphobic/Homophobic terms towards others are NOT allowed.</li>
+          <li>You must remain in character at all times.</li>
+        </ul>
+      </section>
 
+      <section class="rule" id="rule-1-0">
+        <h2>1.0 | Communication</h2>
+        <p>This is an English-speaking server.</p>
+        <p><strong>Voices cannot be used to identify anyone if they are wearing a face covering.</strong></p>
+      </section>
 
-<div class="rule" id="rule2">
-<h2>18+ Requirement</h2>
-<p>
-Players must be 18 years or older to play on the server.
-Exceptions may only be granted by management.
-</p>
-</div>
+      <section class="rule" id="rule-1-1">
+        <h2>1.1 | Respect The Community</h2>
+        <p>Always bear in mind that whatever you are doing inside the game should not take away from someone else having an enjoyable experience.</p>
+        <p>Sending angry OOC messages because of an in-game issue will not be tolerated in this community. Fill out a ticket and handle things the appropriate way. No trolling of any kind will be tolerated in this community.</p>
+      </section>
 
+      <section class="rule" id="rule-1-2">
+        <h2>1.2 | Staff Rulings and Conduct with Staff</h2>
+        <p>All staff rulings are FINAL. If you truly believe a staff member's ruling was made in error, feel free to open a ticket with proof of your suspicion. Do NOT DM or tag staff members. Use the proper channels to address and/or speak with staff.</p>
+      </section>
 
-<div class="rule" id="rule3">
-<h2>Microphone Requirement</h2>
-<p>
-All players must have a working, quality microphone.
-</p>
-</div>
+      <section class="rule" id="rule-1-3">
+        <h2>1.3 | Lying to Staff Members</h2>
+        <p>Do not lie to any staff member about anything. This includes tickets, any chat area, or any other means. Lying to staff to gain IC leverage will not be tolerated and will result in immediate disciplinary action.</p>
+      </section>
 
+      <section class="rule" id="rule-1-4">
+        <h2>1.4 | Disputing a Ban</h2>
+        <p>If you have been permanently banned and wish to appeal, submit a detailed appeal on the Affinity Hub.</p>
+      </section>
 
-<div class="rule" id="rule4">
-<h2>English Requirement</h2>
-<p>
-Players must be able to speak and write English to participate.
-</p>
-</div>
+      <section class="rule" id="rule-1-5">
+        <h2>1.5 | Exploits, Bugs, Cheats, GTA V Mechanics</h2>
+        <p>You are NOT permitted to use any modification that grants you an advantage on the server. This applies to all cheats, mods, plugins, scripts, or any third-party additions. At no time are you allowed to exploit bugs in-game for personal gain. You are required to report a bug if you find one. Using in-game mechanics to gain an unfair or unrealistic advantage is strictly prohibited. Going AFK for farming money through an exploit will not be tolerated, and disciplinary action will be taken.</p>
+      </section>
 
+      <section class="rule" id="rule-1-6">
+        <h2>1.6 | Staff &amp; Server Leadership Roles</h2>
+        <p>Staff and all department/group leaders will keep all plans, player information, support, rule-breaking issues, etc., confidential. Exposing these items or issues publicly will not be tolerated.</p>
+      </section>
 
-<div class="rule" id="rule5">
-<h2>Character Names</h2>
-<p>
-Character names must be realistic and sensible.
-You may not roleplay as a real-world celebrity or notable figure.
-</p>
-</div>
+      <section class="rule" id="rule-1-7">
+        <h2>1.7 | Zero-Tolerance Policy</h2>
+        <p>Rape scenes of any nature are PROHIBITED, even with consent from other players. This behavior will get you both banned without the ability to appeal on the first offense. Roleplaying sexual assault, such as non-consensual touching, rape, etc., physically or verbally, is not allowed and will result in an immediate ban. Suicide RP will NOT be allowed.</p>
+      </section>
 
+      <section class="rule" id="rule-1-8">
+        <h2>1.8 | Deathmatching (RDM &amp; VDM)</h2>
+        <p>Killing another player for no apparent reason with no engaged roleplay is PROHIBITED. Intentionally starting an altercation, such as a fight with little to no engaged roleplay, is also prohibited. Players are responsible for their engagement. It is your duty as a group/player to make clear to the other side that you are also involved in a shootout.</p>
+        <p>This server prohibits the use of a vehicle as a weapon under any circumstances. Do not attempt to ram vehicles to break them down. PIT Maneuvers can be used, however. If an accident has occurred, like a player being hit by a car, it needs to be roleplayed out with EMS and LEOs.</p>
+      </section>
 
-<div class="rule" id="rule6">
-<h2>Toxicity</h2>
-<p>
-Toxic behavior on any platform related to the community
-(Discord, Twitch, Reddit, etc.) may result in removal from the server.
-</p>
-</div>
+      <section class="rule" id="rule-1-9">
+        <h2>1.9 | Downed &amp; New Life Rule (NLR)</h2>
 
+        <h3>Phase 1</h3>
+        <p>(Fetal position / On your side) When in this phase you are considered knocked down, which means you're able to still speak in the game and on the radio. You still are required to act hurt as you have been injured.</p>
 
-<div class="rule" id="rule7">
-<h2>Stay In Character</h2>
-<p>
-Players must remain in character at all times while on the server.
-</p>
-</div>
+        <h3>Phase 2</h3>
+        <p>(On your back / Fully bled out) During this phase, you are considered unconscious. While unconscious, you may not speak to anyone around you or use the radio. You may communicate only through /me interactions.</p>
 
+        <p>You do not remember any events that occur while you are unconscious.</p>
 
-<div class="rule" id="rule8">
-<h2>RDM / VDM</h2>
-<ul>
-<li>Killing another player without engaged roleplay is prohibited.</li>
-<li>Vehicles may not be used as weapons.</li>
-</ul>
-</div>
+        <p>If you were actively speaking with EMS or Police prior to going on your back, you may continue limited interaction with them for scene continuity. However, due to script limitations, you must continue the interaction using /me.</p>
 
+        <p>Once you are brought back to health, you will forget any interaction that led up to you going unconscious, up to 30 minutes, unless you got medical attention from medical personnel.</p>
 
-<div class="rule" id="rule9">
-<h2>New Life Rule</h2>
-<p>
-When your character becomes unconscious you forget events
-leading up to that moment until you are revived.
-</p>
-</div>
+        <p>To prevent the spam flat backing of emergency services, any camera footage from medical personnel or Law Enforcement is automatically uploaded to a virtual cloud. This can not be destroyed by doing /me.</p>
+      </section>
 
+      <section class="rule" id="rule-2-0">
+        <h2>2.0 | Power-Gaming &amp; FailRP</h2>
+        <p>Power gaming is the act of using an in-game mechanic, any external information, or a roleplay concept to favor your character or story and give yourself an unfair or unrealistic advantage. Fail-RP can be classified as many different things, such as GTA driving, for example. Please read carefully below.</p>
+        <p>You can only run to teleportation markers to escape if said teleportation marker is accessible to others or unlocked for others. This includes an example of doing a robbery, getting in a chase, running to a garage, and putting your vehicle away.</p>
+        <p>If you are still in your original vehicle, then there should be a 10-minute wait period to store that vehicle or modify it after a pursuit.</p>
+        <p>You must wait 10 minutes before changing clothes after committing a crime.</p>
+        <p>If you are asked for your federal ID in-game, you are required to give it or face disciplinary action. This is considered FailRP.</p>
+        <p>Do not carry people on bikes.</p>
+        <p>Warlording is not allowed.</p>
+      </section>
 
-<div class="rule" id="rule10">
-<h2>Powergaming</h2>
-<p>
-Using game mechanics or external information to gain an
-unfair roleplay advantage is not allowed.
-</p>
-</div>
+      <section class="rule" id="rule-2-1">
+        <h2>2.1 | Metagaming</h2>
+        <p>The act of using out-of-character/external information for in-game situations. This includes stream sniping, 3rd party VOIP applications, Discord calls, TS for non-LEO, etc. Any information used from watching streams, typing/reading chat, etc., will be met with disciplinary action up to and including a ban from the server.</p>
+        <p><strong>Body cameras, phone cameras, dashcam, and CCTV are the only footage that can be used against a person as evidence in character. THEY MUST BE VISIBLE IN THE RECORDING. “Smart Glasses” and such will only count if you are wearing glasses. Audio can still be recorded if wearing headphones or while on a phone call.</strong></p>
+      </section>
 
+      <section class="rule" id="rule-2-2">
+        <h2>2.2 | Offensive RP/Combat Logging</h2>
+        <p>While Torture RP is allowed, it must be done within reason and WITH CONSENT via /me.</p>
+        <p>ERP is allowed within reason between consenting adults, not within public areas of the city OR on Discord, and may not be streamed. No nudity in public areas, as it can result in an instant ban.</p>
+        <p>Logging off or forcibly re-spawning to another location to avoid situations is not allowed.</p>
+        <p>IF you have to log off but are in the middle of an RP situation, you will need acknowledgment from all parties involved. If you are in the middle of a scene and your game crashes or something causes you to suddenly leave, log back in as soon as possible and explain your situation. If you cannot get back within 5 minutes, please create a ticket and explain what happened and who you were involved with during your scene so we can notify them of the issue. Even posting in gen chat and tagging those in the scene is helpful. Once you commit a crime, you must wait ten minutes before logging out of the server. Abusing the need to log out to avoid jail will result in staff action.</p>
+      </section>
 
-<div class="rule" id="rule11">
-<h2>Metagaming</h2>
-<p>
-Using information obtained outside the game (streams,
-Discord calls, etc.) to influence roleplay is prohibited.
-</p>
-</div>
+      <section class="rule" id="rule-2-3">
+        <h2>2.3 | Interactions between YOUR characters</h2>
+        <p>Your characters cannot know each other from an in-character perspective. You are also not allowed to interact between the two characters, ie, transferring money or any other assets between your characters or using a third-party "friend" to transfer items between your characters. If this is discovered, all parties will have their bank accounts wiped.</p>
+        <p><strong>Your characters CANNOT know each other. Through roleplay, if you hear of a situation or scene, etc., then you can use the information someone may have told you. HOWEVER, you CANNOT use information from character to character.</strong></p>
+      </section>
 
+      <section class="rule" id="rule-2-4">
+        <h2>2.4 | Robbing &amp; Kidnapping</h2>
+        <p>When you rob a player, you cannot take communication devices.</p>
+        <p>You cannot force them to sell their belongings, such as a vehicle, or take money out of an ATM.</p>
+        <p>In a situation where you are attempting to rob or kidnap a player, you cannot kill them unless they are being reckless or otherwise refusing to comply, this includes cops, or attempting to provoke you to cause you harm. If you come across someone downed, you cannot rob them. You also can’t resort to killing an individual for the sole purpose of robbing them unless there is a very established RP reason behind the situation.</p>
+        <p>You CANNOT rob or attempt to rob a player while they are in any type of menu, clothing menu, PDM catalog, restaurant menu, hospital bed, etc. You cannot rob a player who is AFK; you have to wait till you see that individual return to their RP before you begin the interaction.</p>
+      </section>
 
-<div class="rule" id="rule12">
-<h2>Robbery Rules</h2>
-<ul>
-<li>You cannot rob communication devices.</li>
-<li>You cannot rob players who are AFK.</li>
-<li>You cannot force ATM withdrawals.</li>
-</ul>
-</div>
+      <section class="rule" id="rule-2-5">
+        <h2>2.5 | Going AFK</h2>
+        <p>Do not go AFK on the server for longer than 30 minutes; log out and return when you are ready to play. If you are observed to be AFK for longer than this period, you will be removed from the server and can join back when you have time.</p>
+      </section>
 
+      <section class="rule" id="rule-2-6">
+        <h2>2.6 | Robbery Rules &amp; Criminal Activity Limits</h2>
+        <p>You are allowed two demands in total at the initial scene, regardless of the number of hostages you have. To maintain balance in criminal roleplay, the following limits apply to hostile situations involving civilians, based on the type of event:</p>
 
-<div class="rule" id="rule13">
-<h2>FearRP</h2>
-<p>
-Players must value their character’s life and respond
-realistically to threats or dangerous situations.
-</p>
-</div>
+        <h3>High-Risk Criminal Activities</h3>
+        <p><strong>Law Enforcement Response</strong></p>
+        <p>Officers: Up to (number of civilian participants + 2) officers deployed</p>
+        <p>e.g., 4 civilians → 6 officers; 6 civilians → 8 officers.</p>
 
+        <h3>Panic Button</h3>
+        <p>If an officer presses their panic button, it is considered an all-call.</p>
+        <p>During a heist, this overrides the officer's response limitations, allowing unlimited law enforcement response.</p>
 
-<div class="rule" id="rule14">
-<h2>Server Restart Rules</h2>
-<ul>
-<li>No crimes 30 minutes before restart.</li>
-<li>Wait 30 minutes after restart before committing crimes.</li>
-</ul>
-</div>
+        <p>The following offenses may involve up to 4 civilian participants:</p>
+        <ul>
+          <li>House Robberies</li>
+          <li>Store Robberies</li>
+          <li>Muggings</li>
+        </ul>
 
+        <p><strong>Other Interactions</strong></p>
+        <p>Any non-listed criminal or general roleplay interaction may involve up to 6 civilian participants.</p>
 
-<div class="rule" id="rule15">
-<h2>Driving Rules</h2>
-<ul>
-<li>Vehicle stunts must fit the RP situation.</li>
-<li>Excessive unrealistic driving is not allowed.</li>
-<li>Major crashes must be roleplayed realistically.</li>
-</ul>
-</div>
+        <h3>Civilian Vehicles &amp; Swaps</h3>
+        <p>Each civilian group may use up to 4 vehicles in total.</p>
+        <p>You may not store your vehicle in a garage and retrieve a different one to continue the same situation.</p>
 
+        <h3>Heist Situations Include</h3>
+        <p>Fleeca Bank Robbery &amp; Paleto Bank Robbery: A maximum of 6 civilians may actively participate.</p>
+        <p>Pacific Standard: A maximum of 8 civilians may actively participate.</p>
 
-</div>
+        <h3>Civilian Interaction</h3>
+        <p>Group Size vs Participation: Civilians may gather in groups larger than the limits, but only the allowed number may actively engage in the hostile situation.</p>
+        <p>Pre-Detained Civilians, handcuffed/detained before initiation, do not count toward the civilian limit.</p>
+        <p>Once the hostile group limit is reached, no additional members may initiate, assist, or join, even if the situation moves locations, for example, to a hideout or property.</p>
 
+        <h3>Initiation Rules</h3>
+        <p>You may not initiate a hostile action if your group size exceeds the allowed limit.</p>
+        <p>If your larger group is initiated on, all present civilians may defend themselves.</p>
+      </section>
 
-<script>
+      <section class="rule" id="rule-2-7">
+        <h2>2.7 | Interactions with Police, Medical Personnel</h2>
+        <p>Do not, for any reason, purposefully try to get police attention by doing things you would not normally do IRL around them. This includes burning out in the middle of an intersection with police nearby, purposefully baiting for a chase, or committing traffic violations in the vicinity of the police. You are expected to have a normal amount of fear of officer presence and not want to risk jail time.</p>
+        <p>You are NOT permitted to loot law enforcement or their vehicles for police issued equipment at any time.</p>
+        <p>You may steal an emergency vehicle; however, if you are stealing a police vehicle, understand that there are weapons inside it, and cops may open fire on you to stop you from fleeing the scene. Police vehicles may NOT be stolen at Police Stations and medical centers. However, if a police car is found unlocked at a police station in a publicly accessible location, it is fair game.</p>
+        <p>To maintain immersion, any ICU admission duration will be under medical staff discretion.</p>
+      </section>
 
-document.getElementById("search").addEventListener("keyup", function() {
+      <section class="rule" id="rule-2-8">
+        <h2>2.8 | Police Mistreatment and Appeal</h2>
+        <p>If you feel you have been mistreated in a police situation, do not police the police. Use the proper channels, ie, speak to a supervisor, fill out an IA report with their HR department. KEEP IT IN ROLEPLAY.</p>
+      </section>
 
-let input = this.value.toLowerCase()
-let rules = document.querySelectorAll(".rule")
+      <section class="rule" id="rule-2-9">
+        <h2>2.9 | Fear RP / Value of Life</h2>
+        <p>This is what you would do in real life if faced with a scary situation.</p>
+        <p>You must always value your character's life and other characters' lives.</p>
+        <p>Not realistically fearing for your life when you are threatened with weapons or severe harm from other means.</p>
+        <p>If you are already in your car and someone pulls a gun on you, it is acceptable to speed away. At this time, you are taking a chance on being shot/shot at.</p>
+        <p>If an individual informs you not to touch the radio/phone, this includes hitting your panic button; you should comply or die.</p>
+        <p>If held at gunpoint and outnumbered, you must cooperate with the party that is holding you.</p>
+      </section>
 
-rules.forEach(rule => {
+      <section class="rule" id="rule-3-0">
+        <h2>3.0 | Perma-Death/Death Penalty</h2>
+        <p>Nobody will be forced to perma unless it falls under gang stipulations, or is sentenced to death by the Department of Justice.</p>
+      </section>
 
-if(rule.innerText.toLowerCase().includes(input))
-rule.style.display="block"
-else
-rule.style.display="none"
+      <section class="rule" id="rule-3-1">
+        <h2>3.1 | Vigilante/Hitman RP</h2>
+        <p>This type of RP is allowed within reason, but RDM rules still apply, as well as legal ramifications IC.</p>
+      </section>
 
-})
+      <section class="rule" id="rule-3-2">
+        <h2>3.2 | Server Restarts &amp; Crime</h2>
+        <p>Roleplay shouldn't become less serious before a restart; it should come to an end/pause peacefully.</p>
+        <p>No Crimes should be started 30 Minutes prior to server restart; this will help with getting all of our scenes wrapped up.</p>
+        <p>A mandatory minimum of 30 Minutes is required to pass after the server restart before any crimes can be committed.</p>
+        <p>If a non-scheduled server reset takes place, all players within a scene are required to go back to that location and finish RP'ing their scene out.</p>
+      </section>
 
-})
+      <section class="rule" id="rule-3-3">
+        <h2>3.3 | IC Corruption</h2>
+        <p>Corruption within whitelisted government positions, including any LEO agency, medical personnel, DOJ, etc., is permitted. However, department-issued equipment may not be distributed or given to anyone outside of that department. All corruption requests must be submitted directly to management through a management ticket. Do not discuss or disclose corruption plans to moderators, admins, sr admins, or other members.</p>
+      </section>
 
-</script>
+      <section class="rule" id="rule-3-4">
+        <h2>3.4 | Multiple Whitelisted Jobs &amp; Certified Gangs/MC’s</h2>
+        <p>If you are a member of a government department, e.g., Police or EMS, you may also hold one civilian business position, such as SADOT, a restaurant, or a mechanic shop.</p>
+        <p>If you are a member of LEO, you may work in the DA’s office for the DOJ. If you are in an official organization, you may work as a defense attorney for the DOJ. Must be on different characters.</p>
+      </section>
 
+      <section class="rule" id="rule-3-5">
+        <h2>3.5 | Camping in Illicit Areas</h2>
+        <p>Camping in illicit spots: Intentionally sitting in high-traffic areas that lead to illicit spots, drug areas, job areas, money washing, etc., is not allowed for the reason of robbing individuals. Law enforcement may not position themselves at or near illicit locations solely to initiate traffic stops or immediately detain individuals leaving the area. However, officers may conduct active surveillance as part of an ongoing investigation or to build a larger case.</p>
+      </section>
 
+      <section class="rule" id="rule-3-6">
+        <h2>3.6 | Cars with no License Plate</h2>
+        <p>Due to city limitations, even if a vehicle has no plate, police radar may still read it.</p>
+      </section>
+
+      <section class="rule" id="rule-3-7">
+        <h2>3.7 | Gangs and Organizations</h2>
+        <p>Gangs are expected to set the flow of roleplay positively for the city. It is frowned upon for gangs to roll together to cause mass havoc or kill and harass players. Gangs found to be constantly providing low-quality role play can be subject to gang strikes or even be disbanded. ALL gangs will need to have an application approved.</p>
+        <p>LEO may have a separate character that is in an official gang, MC, or organization. However, you can not be a member of the command in both, and you will not be able to join MCD or SWAT.</p>
+      </section>
+
+      <section class="rule" id="rule-3-8">
+        <h2>3.8 | Disciplinary Policy Notes</h2>
+        <p>Disciplinary actions can take shape in many ways and are not set to one standard approach.</p>
+        <p>Disciplinary actions can be formal warnings, day(s) bans, or permanent bans.</p>
+        <p>It will all take place in our Discord ticket area only, never in DMs.</p>
+        <p>If you have been permanently banned and wish to appeal, submit a detailed email to: sbrp25@gmail.com</p>
+      </section>
+
+      <section class="rule" id="rule-3-9">
+        <h2>3.9 | Revenge RP</h2>
+        <p>You are only allowed to get revenge on someone within the next 48 hours.</p>
+        <p>Please follow section 1.9 in regards to if you are able to remember the last scene or not.</p>
+      </section>
+
+      <section class="rule" id="rule-4-0">
+        <h2>4.0 | Driving</h2>
+        <p>Jumping vehicles off ledges, cliffs, structures, or buildings is allowed when it reasonably fits the roleplay situation. However, excessive stunts, e.g., extreme speeds off major mountains or massive vertical drops, are not permitted. Vehicle damage and/or injuries must be roleplayed when appropriate.</p>
+        <p>If a vehicle flips or rolls, players must use common sense. Minor rolls, 1–3 times, may be continued with proper roleplay of damage or injury. Excessive rolling or severe crashes that would realistically disable the vehicle require you to stop and roleplay the aftermath. You may not simply continue driving.</p>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const searchInput = document.getElementById('search');
+    const sections = Array.from(document.querySelectorAll('.rule'));
+    const navLinks = Array.from(document.querySelectorAll('.sidebar a'));
+
+    searchInput.addEventListener('input', function () {
+      const q = this.value.trim().toLowerCase();
+
+      sections.forEach(section => {
+        const text = section.innerText.toLowerCase();
+        section.classList.toggle('hidden', q && !text.includes(q));
+      });
+
+      navLinks.forEach(link => {
+        const targetId = link.getAttribute('href').replace('#', '');
+        const target = document.getElementById(targetId);
+        const visible = target && !target.classList.contains('hidden');
+        link.classList.toggle('hidden', !visible);
+      });
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(link => link.classList.remove('active'));
+          const activeLink = document.querySelector('.sidebar a[href="#' + entry.target.id + '"]');
+          if (activeLink) activeLink.classList.add('active');
+        }
+      });
+    }, {
+      rootMargin: '-25% 0px -60% 0px',
+      threshold: 0.1
+    });
+
+    sections.forEach(section => observer.observe(section));
+  </script>
 </body>
 </html>
