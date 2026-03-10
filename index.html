@@ -6,6 +6,43 @@
   <title>AffinityRP Rulebook</title>
   <link rel="icon" type="image/png" href="favicon.png">
   <style>
+    .grid-bg{
+      position:fixed;
+      inset:0;
+      z-index:-1;
+      pointer-events:none;
+      will-change:transform;
+    
+      background:
+        linear-gradient(rgba(56,189,248,0.18) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(56,189,248,0.18) 1px, transparent 1px);
+    
+      background-size:60px 60px;
+    
+      mask-image: radial-gradient(circle at center, black 20%, transparent 85%);
+    
+      animation:gridMove 18s linear infinite;
+    }
+    @keyframes gridMove{
+      from{
+        transform:translateY(0);
+      }
+      to{
+        transform:translateY(60px);
+      }
+    }
+
+    .grid-bg::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(rgba(56,189,248,0.25) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(56,189,248,0.25) 1px, transparent 1px);
+      background-size:60px 60px;
+      filter:blur(1px);
+      opacity:.4;
+    }
     :root{
       --bg:#0f172a;
       --panel:#020617;
@@ -31,8 +68,19 @@
       font-family:Inter,Segoe UI,Arial,sans-serif;
       background:var(--bg);
       color:var(--text);
+      overflow-x:hidden;
     }
 
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      z-index:-2;
+      pointer-events:none;
+      background:
+        radial-gradient(circle at 30% 20%, rgba(56,189,248,.12), transparent 40%),
+        radial-gradient(circle at 70% 80%, rgba(56,189,248,.08), transparent 40%);
+    }
     .layout{
       display:flex;
       min-height:100vh;
@@ -41,6 +89,7 @@
     .sidebar{
       width:320px;
       background:var(--panel);
+      backdrop-filter: blur(8px);
       border-right:1px solid var(--border);
       height:100vh;
       position:fixed;
@@ -75,6 +124,19 @@
       background:var(--panel);
       padding-bottom:12px;
       z-index:5;
+    }
+
+    ::-webkit-scrollbar{
+      width:8px;
+    }
+    
+    ::-webkit-scrollbar-track{
+      background:#020617;
+    }
+    
+    ::-webkit-scrollbar-thumb{
+      background:#38bdf8;
+      border-radius:6px;
     }
 
     #search{
@@ -130,16 +192,19 @@
       padding:40px 28px 64px;
     }
 
-  .hero{
-    max-width:1100px;
-    margin:0 auto 28px;
-    padding:28px;
-    background:linear-gradient(180deg, rgba(23,37,84,.65), rgba(30,41,59,.95));
-    border:1px solid var(--border);
-    border-radius:20px;
-    box-shadow:0 20px 40px rgba(0,0,0,.18);
-    text-align:center;
-  }
+    .hero{
+      max-width:1100px;
+      margin:0 auto 28px;
+      padding:28px;
+    
+      background:
+        linear-gradient(180deg, rgba(2,6,23,.85), rgba(30,41,59,.95));
+    
+      border:1px solid var(--border);
+      border-radius:20px;
+      box-shadow:0 20px 40px rgba(0,0,0,.18);
+      text-align:center;
+    }
 
     .hero h1{
       margin:0 0 10px;
@@ -160,7 +225,7 @@
       border:1px solid var(--border);
       border-radius:18px;
       padding:24px;
-      scroll-margin-top:22px;
+      scroll-margin-top:80px;
       box-shadow:0 10px 25px rgba(0,0,0,.12);
     }
 
@@ -244,6 +309,7 @@
   </style>
 </head>
 <body>
+  <div class="grid-bg"></div>
   <div class="layout">
     <aside class="sidebar">
       <div class="brand">
